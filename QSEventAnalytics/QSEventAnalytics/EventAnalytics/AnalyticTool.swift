@@ -204,9 +204,7 @@ public class AnalyticTool {
                        encoding: JSONEncoding.prettyPrinted)
             .responseData(completionHandler: { [weak self] response in
                 switch response.result {
-                case .success(let data):
-                    let jsonObj = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
-                    let json = jsonObj as? Dictionary<String, Any>
+                case .success(_):
                     self?.myPrint(eventCode, eventName, eventType.typeCode, belongPage ?? "", extraContent)
                     onSuccess()
                     

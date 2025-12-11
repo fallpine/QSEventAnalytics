@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "QSEventAnalytics"
-  spec.version      = "0.0.1"
+  spec.version      = "1.0.0"
   spec.summary      = "事件打点分析"
 
   # This description is used to generate tags and improve search results.
@@ -81,6 +81,7 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/fallpine/QSEventAnalytics.git", :tag => "#{spec.version}" }
   spec.swift_version = '5'
+  spec.static_framework = true 
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
