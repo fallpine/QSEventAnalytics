@@ -10,7 +10,7 @@ import Alamofire
 
 public class AnalyticTool {
     // MARK: - Func
-    func initialize(userid: String,
+    public func initialize(userid: String,
                     api: String,
                     getIpLocationAction: @escaping (((_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)) {
         FirebaseAnalyticTool.configure()
@@ -21,7 +21,7 @@ public class AnalyticTool {
     }
     
     /// 打点
-    func addEvent(code: String,
+    public func addEvent(code: String,
                   name: String,
                   timestamp: TimeInterval?,
                   type: EventType,
@@ -74,12 +74,12 @@ public class AnalyticTool {
     }
     
     /// 更新sessionId
-    func jxh_updateSessionId() {
+    public func updateSessionId() {
         sessionId = UUID().uuidString
     }
     
     /// 获取当前页面信息
-    func getCurrentPageData() -> [String: Any] {
+    public func getCurrentPageData() -> [String: Any] {
         return [
             "code": currentPageCode,
             "name": currentPageName,
@@ -88,7 +88,7 @@ public class AnalyticTool {
     }
     
     /// 返回当前页面
-    func returnToPage(pageData: [String: Any]) {
+    public func returnToPage(pageData: [String: Any]) {
         if let code = pageData["code"] as? String,
            let name = pageData["name"] as? String
         {
@@ -160,8 +160,7 @@ public class AnalyticTool {
                             belongPage: String?,
                             extra: [String: Any]?,
                             onSuccess: @escaping (() -> Void),
-                            onFailure: @escaping (() -> Void))
-    {
+                            onFailure: @escaping (() -> Void)) {
         getIpLocationAction? { [weak self] networkIp, countryCode, cityCode in
             guard let `self` = self else { return }
             
