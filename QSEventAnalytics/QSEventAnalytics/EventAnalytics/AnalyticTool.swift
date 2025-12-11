@@ -170,13 +170,7 @@ public class AnalyticTool {
                 extraContent = objectToJsonString(extra!) ?? ""
             }
             
-#if DEBUG
-            let isTest = true
-#else
-            let isTest = false
-#endif
-            
-            let paraDict = [
+            var paraDict = [
                 "sessionId": sessionId,
                 "uuid": userid,
                 "eventCode": eventCode,
@@ -190,8 +184,13 @@ public class AnalyticTool {
                 "appVersion": FirebaseAnalyticTool.appVersion ?? "",
                 "attrPage": belongPage ?? "",
                 "eventContent": extraContent,
-                "env": isTest ? "dev" : "prd",
             ] as [String : Any]
+            
+#if DEBUG
+            paraDict["env"] = "dev"
+#else
+            paraDict["env"] = "prd"
+#endif
             
             guard let requestUrl = URL.init(string: api) else {
                 return
