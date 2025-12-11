@@ -259,6 +259,28 @@ public class AnalyticTool {
                  extra: nil)
     }
     
+    /// APP进入活跃状态
+    @objc private func didBecomeActive() {
+        // 打点
+        addEvent(code: "app_activeState",
+                 name: "进入-【活跃状态】",
+                 timestamp: nil,
+                 type: .appIn,
+                 belongPage: currentPageCode,
+                 extra: nil)
+    }
+    
+    /// APP非进入活跃状态
+    @objc private func willResignActive() {
+        // 打点
+        addEvent(code: "app_activeState",
+                 name: "进入-【活跃状态】",
+                 timestamp: nil,
+                 type: .appOut,
+                 belongPage: currentPageCode,
+                 extra: nil)
+    }
+    
     /// 监听网络状态
     private func networkReachabilityChanged() {
         networkReachabilityManager = NetworkReachabilityManager()
@@ -315,6 +337,21 @@ public class AnalyticTool {
                 name: UIApplication.didEnterBackgroundNotification,
                 object: nil
             )
+            // 监听进入活跃状态
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(didBecomeActive),
+                name: UIApplication.didBecomeActiveNotification,
+                object: nil
+            )
+            // 监听进入非活跃状态
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(willResignActive),
+                name: UIApplication.willResignActiveNotification,
+                object: nil
+            )
+            
             // 网络状态改变
             _shareInstance?.networkReachabilityChanged()
             return _shareInstance!
