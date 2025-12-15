@@ -13,7 +13,9 @@ public class FirebaseAnalyticTool {
     /// 初始化配置
     public static func configure() {
         // 配置Firebase
-        FirebaseApp.configure()
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
         
         var parameters = [String: String]()
         let version = appVersion ?? ""
@@ -38,6 +40,8 @@ public class FirebaseAnalyticTool {
         if !version.isEmpty {
             eventName = eventName + "_" + version
         }
+        
+        assert(eventName.count <= 30, "事件名过长，不得超过30个字符")
         
         Analytics.logEvent(eventName, parameters: parameters)
     }

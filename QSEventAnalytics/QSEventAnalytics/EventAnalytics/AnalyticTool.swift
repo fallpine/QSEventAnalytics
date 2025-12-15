@@ -12,7 +12,7 @@ public class AnalyticTool {
     // MARK: - Func
     public func initialize(userid: String,
                     api: String,
-                    getIpLocationAction: @escaping (((_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)) {
+                    getIpLocationAction: @escaping ((@escaping (_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)) {
         FirebaseAnalyticTool.configure()
         
         self.userid = userid
@@ -88,11 +88,11 @@ public class AnalyticTool {
     }
     
     /// 返回当前页面
-    public func returnToPage(pageData: [String: Any]) {
-        if let code = pageData["code"] as? String,
-           let name = pageData["name"] as? String
+    public func returnToPage(pageData: [String: Any]?) {
+        if let code = pageData?["code"] as? String,
+           let name = pageData?["name"] as? String
         {
-            let extra = pageData["extra"] as? [String: Any]
+            let extra = pageData?["extra"] as? [String: Any]
             
             addEvent(code: code,
                      name: name,
@@ -306,10 +306,10 @@ public class AnalyticTool {
     private var networkReachabilityManager: NetworkReachabilityManager?
     private var userid = ""
     private var api = ""
-    private var getIpLocationAction: (((_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)?
+    private var getIpLocationAction: ((@escaping (_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)?
     private var sessionId = UUID().uuidString
     
-    var currentPageCode = ""
+    public var currentPageCode = ""
     private var currentPageName = ""
     private var currentPageExtra: [String: Any]?
     
