@@ -47,29 +47,32 @@ public class AnalyticTool {
             currentPageExtra = extra
         }
         
-        // Firebase打点
-        FirebaseAnalyticTool.addEvent(name: code + "_\(type.firebaseTypeCode)")
-        // 接口记录
-        requestApi(sessionId: sessionId,
-                   eventCode: code,
-                   eventName: name,
-                   timestamp: newTimestamp,
-                   eventType: type,
-                   belongPage: belongPage,
-                   extra: extra) {
-        } onFailure: { [weak self] in
+        DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
-            
-            failedEventsLock.lock()
-            let model = AnalyticModel(sessionId: sessionId,
-                                      eventCode: code,
-                                      eventName: name,
-                                      eventType: type,
-                                      timestamp: newTimestamp,
-                                      belongPage: belongPage,
-                                      extra: extra)
-            failedEvents.append(model)
-            failedEventsLock.unlock()
+            // Firebase打点
+            FirebaseAnalyticTool.addEvent(name: code + "_\(type.firebaseTypeCode)")
+            // 接口记录
+            requestApi(sessionId: sessionId,
+                       eventCode: code,
+                       eventName: name,
+                       timestamp: newTimestamp,
+                       eventType: type,
+                       belongPage: belongPage,
+                       extra: extra) {
+            } onFailure: { [weak self] in
+                guard let `self` = self else { return }
+                
+                failedEventsLock.lock()
+                let model = AnalyticModel(sessionId: sessionId,
+                                          eventCode: code,
+                                          eventName: name,
+                                          eventType: type,
+                                          timestamp: newTimestamp,
+                                          belongPage: belongPage,
+                                          extra: extra)
+                failedEvents.append(model)
+                failedEventsLock.unlock()
+            }
         }
     }
     
@@ -122,22 +125,20 @@ public class AnalyticTool {
                 let model = failedEvents.removeFirst()
                 failedEventsLock.unlock()
                 
-                getIpLocationAction? { [weak self] networkIp, countryCode, cityCode in
-                    self?.requestApi(sessionId: model.sessionId,
-                                     eventCode: model.eventCode,
-                                     eventName: model.eventName,
-                                     timestamp: model.timestamp,
-                                     eventType: model.eventType,
-                                     belongPage: model.belongPage,
-                                     extra: model.extra) {
-                        // 成功无需处理
-                    } onFailure: { [weak self] in
-                        guard let self = self else { return }
-                        
-                        failedEventsLock.lock()
-                        failedEvents.append(model)
-                        failedEventsLock.unlock()
-                    }
+                requestApi(sessionId: model.sessionId,
+                           eventCode: model.eventCode,
+                           eventName: model.eventName,
+                           timestamp: model.timestamp,
+                           eventType: model.eventType,
+                           belongPage: model.belongPage,
+                           extra: model.extra) {
+                    // 成功无需处理
+                } onFailure: { [weak self] in
+                    guard let self = self else { return }
+                    
+                    failedEventsLock.lock()
+                    failedEvents.append(model)
+                    failedEventsLock.unlock()
                 }
             }
         }
@@ -363,3 +364,4 @@ public class AnalyticTool {
         networkReachabilityChanged()
     }
 }
+
