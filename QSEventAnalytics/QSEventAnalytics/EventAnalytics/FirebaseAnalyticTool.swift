@@ -41,7 +41,7 @@ public class FirebaseAnalyticTool {
             eventName = eventName + "_" + version
         }
         
-        assert(eventName.count <= 30, "事件名过长，不得超过30个字符")
+        assert(eventName.count <= 40, "事件名过长，不得超过40个字符")
         
         Analytics.logEvent(eventName, parameters: parameters)
     }

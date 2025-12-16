@@ -11,8 +11,8 @@ import Alamofire
 public class AnalyticTool {
     // MARK: - Func
     public func initialize(userid: String,
-                    api: String,
-                    getIpLocationAction: @escaping ((@escaping (_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)) {
+                           api: String,
+                           getIpLocationAction: @escaping ((@escaping (_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)) {
         FirebaseAnalyticTool.configure()
         
         self.userid = userid
@@ -22,11 +22,11 @@ public class AnalyticTool {
     
     /// 打点
     public func addEvent(code: String,
-                  name: String,
-                  timestamp: TimeInterval?,
-                  type: EventType,
-                  belongPage: String?,
-                  extra: [String: Any]? = nil)
+                         name: String,
+                         timestamp: TimeInterval?,
+                         type: EventType,
+                         belongPage: String?,
+                         extra: [String: Any]? = nil)
     {
         let newTimestamp = timestamp ?? Date().timeIntervalSince1970 * 1000
         
@@ -203,11 +203,11 @@ public class AnalyticTool {
             .responseData(completionHandler: { [weak self] response in
                 switch response.result {
                 case .success(_):
-                    self?.myPrint(eventCode, eventName, eventType.typeCode, belongPage ?? "", extraContent)
+                    self?.myPrint("打点：", eventCode, eventName, eventType.typeCode, belongPage ?? "", extraContent)
                     onSuccess()
                     
                 case .failure(let err):
-                    self?.myPrint(err.localizedDescription)
+                    self?.myPrint("打点：", err.localizedDescription)
                     onFailure()
                 }
             })
@@ -323,42 +323,43 @@ public class AnalyticTool {
     public static var share: AnalyticTool {
         guard let instance = _shareInstance else {
             _shareInstance = AnalyticTool()
-            // 监听进入后台
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(appDidEnterBackground),
-                name: UIApplication.didEnterBackgroundNotification,
-                object: nil
-            )
-            // 监听进入前台
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(appWillEnterForeground),
-                name: UIApplication.didEnterBackgroundNotification,
-                object: nil
-            )
-            // 监听进入活跃状态
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(didBecomeActive),
-                name: UIApplication.didBecomeActiveNotification,
-                object: nil
-            )
-            // 监听进入非活跃状态
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(willResignActive),
-                name: UIApplication.willResignActiveNotification,
-                object: nil
-            )
-            
-            // 网络状态改变
-            _shareInstance?.networkReachabilityChanged()
             return _shareInstance!
         }
         
         return instance
     }
     
-    private init() {}
+    private init() {
+        // 监听进入后台
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appDidEnterBackground),
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
+        // 监听进入前台
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appWillEnterForeground),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
+        // 监听进入活跃状态
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        // 监听进入非活跃状态
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(willResignActive),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+        
+        // 网络状态改变
+        networkReachabilityChanged()
+    }
 }
