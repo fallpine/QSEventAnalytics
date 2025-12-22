@@ -5,7 +5,7 @@
 //  Created by ht on 2025/12/11.
 //
 
-import UIKit
+import Foundation
 
 public struct AnalyticModel {
     var sessionId: String
@@ -14,7 +14,7 @@ public struct AnalyticModel {
     var eventType: EventType
     var timestamp: TimeInterval
     var belongPage: String?
-    var extra: Dictionary<String, Any>?
+    var extra: [String: Any]?
 }
 
 /// 打点事件类型
@@ -30,7 +30,7 @@ public enum EventType {
     case close
     case state
     case error
-    
+
     var typeCode: String {
         switch self {
         case .appIn:
@@ -57,7 +57,7 @@ public enum EventType {
             return "error"
         }
     }
-    
+
     // firebase打点的数据类型
     var firebaseTypeCode: String {
         switch self {
@@ -85,7 +85,7 @@ public enum EventType {
             return "err"
         }
     }
-    
+
     var eventNamePrefix: String {
         switch self {
         case .appIn:
