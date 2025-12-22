@@ -20,7 +20,7 @@ public class FirebaseAnalyticTool {
         }
         
         var parameters = [String: String]()
-        let version = appVersion ?? ""
+        let version = AnalyticTool.appVersion ?? ""
         parameters["version"] = version
         
         let locale = Locale.current
