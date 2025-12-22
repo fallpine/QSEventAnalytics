@@ -13,7 +13,10 @@ public class AnalyticTool {
     public func initialize(userid: String,
                            api: String,
                            getIpLocationAction: @escaping ((@escaping (_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)) {
+#if canImport(FirebaseAnalytics)
         FirebaseAnalyticTool.configure()
+#endif // canImport(FirebaseAnalytics)
+        
         
         self.userid = userid
         self.api = api
