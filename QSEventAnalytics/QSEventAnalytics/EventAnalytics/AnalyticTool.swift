@@ -49,8 +49,13 @@ public class AnalyticTool {
         
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
-            // Firebase打点
+            
+#if canImport(FirebaseAnalytics)
+            // Firebase 打点（仅在支持 FirebaseAnalytics 的平台执行）
             FirebaseAnalyticTool.addEvent(name: code + "_\(type.firebaseTypeCode)")
+#endif // canImport(FirebaseAnalytics)
+            
+            // Firebase打点
             // 接口记录
             requestApi(sessionId: sessionId,
                        eventCode: code,

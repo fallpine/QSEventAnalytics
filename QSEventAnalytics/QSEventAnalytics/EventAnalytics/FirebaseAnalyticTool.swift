@@ -5,6 +5,8 @@
 //  Created by ht on 2025/12/11.
 //
 
+
+#if canImport(FirebaseAnalytics)
 import FirebaseAnalytics
 import FirebaseCore
 
@@ -53,3 +55,4 @@ public class FirebaseAnalyticTool {
         return kInfoDict?["CFBundleShortVersionString"] as? String
     }
 }
+#endif // canImport(FirebaseAnalytics)
