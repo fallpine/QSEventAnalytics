@@ -263,10 +263,10 @@ public class AnalyticTool {
     /// APP进入活跃状态
     @objc private func didBecomeActive() {
         // 打点
-        addEvent(code: "app_activeState",
-                 name: "进入-【活跃状态】",
+        addEvent(code: "app_become_active",
+                 name: "进入-活跃状态",
                  timestamp: nil,
-                 type: .appIn,
+                 type: .state,
                  belongPage: currentPageCode,
                  extra: nil)
     }
@@ -274,10 +274,10 @@ public class AnalyticTool {
     /// APP非进入活跃状态
     @objc private func willResignActive() {
         // 打点
-        addEvent(code: "app_activeState",
-                 name: "进入-【活跃状态】",
+        addEvent(code: "app_resign_active",
+                 name: "进入-非活跃状态",
                  timestamp: nil,
-                 type: .appOut,
+                 type: .state,
                  belongPage: currentPageCode,
                  extra: nil)
     }
