@@ -6,7 +6,7 @@
 //
 
 
-#if canImport(FirebaseAnalytics)
+#if os(iOS)
 import FirebaseAnalytics
 import FirebaseCore
 

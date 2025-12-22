@@ -13,7 +13,7 @@ public class AnalyticTool {
     public func initialize(userid: String,
                            api: String,
                            getIpLocationAction: @escaping ((@escaping (_ networkIp: String, _ countryCode: String, _ cityCode: String) -> Void) -> Void)) {
-#if canImport(FirebaseAnalytics)
+#if os(iOS)
         FirebaseAnalyticTool.configure()
 #endif // canImport(FirebaseAnalytics)
         
@@ -53,7 +53,7 @@ public class AnalyticTool {
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             
-#if canImport(FirebaseAnalytics)
+#if os(iOS)
             // Firebase 打点（仅在支持 FirebaseAnalytics 的平台执行）
             FirebaseAnalyticTool.addEvent(name: code + "_\(type.firebaseTypeCode)")
 #endif // canImport(FirebaseAnalytics)
