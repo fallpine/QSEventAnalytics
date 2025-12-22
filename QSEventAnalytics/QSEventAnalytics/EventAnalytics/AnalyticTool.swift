@@ -23,7 +23,7 @@ public class AnalyticTool {
     {
 #if os(iOS)
         FirebaseAnalyticTool.configure()
-#endif // canImport(FirebaseAnalytics)
+#endif
         
         self.userid = userid
         self.api = api
