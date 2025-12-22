@@ -48,4 +48,4 @@ public class FirebaseAnalyticTool {
         Analytics.logEvent(eventName, parameters: parameters)
     }
 }
-#endif // canImport(FirebaseAnalytics)
+#endif // os(iOS)
