@@ -5,7 +5,10 @@ target 'QSEventAnalytics' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
-  pod 'FirebaseAnalytics'
+  # FirebaseAnalytics 只在 iOS 平台上使用
+  platform :ios, '15.0' do
+    pod 'FirebaseAnalytics'
+  end
   pod 'Alamofire'
 
 end
