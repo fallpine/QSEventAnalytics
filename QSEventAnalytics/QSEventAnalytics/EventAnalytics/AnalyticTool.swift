@@ -111,6 +111,13 @@ public class AnalyticTool {
         }
     }
     
+    // MARK: - Property
+    public static var appVersion: String? {
+        let kInfoDict = Bundle.main.infoDictionary
+        // 获取App的版本号
+        return kInfoDict?["CFBundleShortVersionString"] as? String
+    }
+    
     /// 重新发送失败的事件
     private func resendFailedEvents() {
         if isSending { return }
@@ -186,7 +193,7 @@ public class AnalyticTool {
                 "countryCode": countryCode,
                 "cityCode": cityCode,
                 "systemVersion": UIDevice.current.systemName + " " + UIDevice.current.systemVersion,
-                "appVersion": FirebaseAnalyticTool.appVersion ?? "",
+                "appVersion": AnalyticTool.appVersion ?? "",
                 "attrPage": belongPage ?? "",
                 "eventContent": extraContent,
             ] as [String : Any]

@@ -38,7 +38,7 @@ public class FirebaseAnalyticTool {
     ///   - parameters: 参数
     public static func addEvent(name: String, parameters: [String: Any] = [:]) {
         var eventName = name
-        let version = (appVersion ?? "").replacingOccurrences(of: ".", with: "")
+        let version = (AnalyticTool.appVersion ?? "").replacingOccurrences(of: ".", with: "")
         if !version.isEmpty {
             eventName = eventName + "_" + version
         }
@@ -46,13 +46,6 @@ public class FirebaseAnalyticTool {
         assert(eventName.count <= 40, "事件名过长，不得超过40个字符")
         
         Analytics.logEvent(eventName, parameters: parameters)
-    }
-    
-    // MARK: - Property
-    public static var appVersion: String? {
-        let kInfoDict = Bundle.main.infoDictionary
-        // 获取App的版本号
-        return kInfoDict?["CFBundleShortVersionString"] as? String
     }
 }
 #endif // canImport(FirebaseAnalytics)
