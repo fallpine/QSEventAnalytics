@@ -64,4 +64,8 @@ public class AnalyticTool {
                      extra: extra)
         }
     }
+    
+    public static var currentPageCode: String {
+        return ApiAnalytics.shared.currentPageCode
+    }
 }
