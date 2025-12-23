@@ -81,6 +81,7 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/fallpine/QSEventAnalytics.git", :tag => "#{spec.version}" }
   spec.swift_version = '5'
+  spec.static_framework = true
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
