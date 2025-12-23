@@ -14,9 +14,7 @@
 		652C69DF2EEA665F0096621F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 652C69D32EEA665F0096621F /* Assets.xcassets */; };
 		652C69E12EEA665F0096621F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 652C69D62EEA665F0096621F /* LaunchScreen.storyboard */; };
 		652C69E22EEA665F0096621F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 652C69D82EEA665F0096621F /* Main.storyboard */; };
-		652C69EE2EEA67070096621F /* FirebaseAnalyticTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652C69EC2EEA67070096621F /* FirebaseAnalyticTool.swift */; };
 		652C69F02EEA69C40096621F /* AnalyticTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652C69EF2EEA69C40096621F /* AnalyticTool.swift */; };
-		652C69F22EEA6C2D0096621F /* AnalyticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652C69F12EEA6C2D0096621F /* AnalyticModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +26,7 @@
 		652C69D72EEA665F0096621F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		652C69D92EEA665F0096621F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		652C69DA2EEA665F0096621F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		652C69EC2EEA67070096621F /* FirebaseAnalyticTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticTool.swift; sourceTree = "<group>"; };
 		652C69EF2EEA69C40096621F /* AnalyticTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticTool.swift; sourceTree = "<group>"; };
-		652C69F12EEA6C2D0096621F /* AnalyticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticModel.swift; sourceTree = "<group>"; };
 		95E690347331A708DC8150F4 /* Pods_QSEventAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QSEventAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01814BE364D14667F101F27 /* Pods-QSEventAnalytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QSEventAnalytics.debug.xcconfig"; path = "Target Support Files/Pods-QSEventAnalytics/Pods-QSEventAnalytics.debug.xcconfig"; sourceTree = "<group>"; };
 		F834582AFAFE24D47D52ABA3 /* Pods-QSEventAnalytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QSEventAnalytics.release.xcconfig"; path = "Target Support Files/Pods-QSEventAnalytics/Pods-QSEventAnalytics.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,9 +89,7 @@
 		652C69ED2EEA67070096621F /* EventAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				652C69EC2EEA67070096621F /* FirebaseAnalyticTool.swift */,
 				652C69EF2EEA69C40096621F /* AnalyticTool.swift */,
-				652C69F12EEA6C2D0096621F /* AnalyticModel.swift */,
 			);
 			path = EventAnalytics;
 			sourceTree = "<group>";
@@ -208,13 +202,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-QSEventAnalytics/Pods-QSEventAnalytics-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-QSEventAnalytics/Pods-QSEventAnalytics-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -228,9 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				652C69F22EEA6C2D0096621F /* AnalyticModel.swift in Sources */,
 				652C69DC2EEA665F0096621F /* AppDelegate.swift in Sources */,
-				652C69EE2EEA67070096621F /* FirebaseAnalyticTool.swift in Sources */,
 				652C69F02EEA69C40096621F /* AnalyticTool.swift in Sources */,
 				652C69DD2EEA665F0096621F /* SceneDelegate.swift in Sources */,
 				652C69DE2EEA665F0096621F /* ViewController.swift in Sources */,
