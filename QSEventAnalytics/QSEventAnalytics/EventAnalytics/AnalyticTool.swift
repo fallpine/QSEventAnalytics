@@ -45,7 +45,7 @@ public class AnalyticTool {
     }
     
     /// 获取当前页面信息
-    public static func getCurrentPageData() -> [String: Any] {
+    public static func getCurrentPageData() -> [String: Any]? {
         return ApiAnalytics.shared.getCurrentPageData()
     }
     
