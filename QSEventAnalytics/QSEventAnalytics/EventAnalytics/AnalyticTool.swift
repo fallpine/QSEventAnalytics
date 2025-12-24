@@ -44,6 +44,11 @@ public class AnalyticTool {
         ApiAnalytics.shared.updateSessionId()
     }
     
+    /// 获取当前时间戳
+    public func getCurrentTimestamp() -> TimeInterval {
+        return ApiAnalytics.shared.getCurrentTimestamp()
+    }
+    
     /// 获取当前页面信息
     public static func getCurrentPageData() -> [String: Any]? {
         return ApiAnalytics.shared.getCurrentPageData()
