@@ -45,7 +45,7 @@ public class AnalyticTool {
     }
     
     /// 获取当前时间戳
-    public func getCurrentTimestamp() -> TimeInterval {
+    public static func getCurrentTimestamp() -> TimeInterval {
         return ApiAnalytics.shared.getCurrentTimestamp()
     }
     
