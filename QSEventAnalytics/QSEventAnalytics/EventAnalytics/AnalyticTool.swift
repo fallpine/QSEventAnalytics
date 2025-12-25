@@ -16,6 +16,7 @@ public class AnalyticTool {
                            appVersion: String
                            )
     {
+        FirebaseAnalytics.configure()
         ApiAnalytics.shared.initialize(userid: userid,
                                        api: api,
                                        systemVersion: systemVersion,
