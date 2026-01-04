@@ -25,11 +25,13 @@ public class AnalyticTool {
     
     /// 打点
     public static func addEvent(code: String,
-                         name: String,
-                         timestamp: TimeInterval?,
-                         type: ApiAnalyticsType,
-                         belongPage: String?,
-                         extra: [String: String]? = nil)
+                                name: String,
+                                timestamp: TimeInterval?,
+                                type: ApiAnalyticsType,
+                                belongPage: String?,
+                                extra: [String: String]? = nil,
+                                onSuccess: (() -> Void)?,
+                                onError: ((ApiAnalyticsModel) -> Void)? = nil)
     {
         FirebaseAnalytics.addEvent(name: code + "_\(type.firebaseTypeCode)")
         ApiAnalytics.shared.addEvent(code: code,
@@ -37,7 +39,9 @@ public class AnalyticTool {
                                      timestamp: timestamp,
                                      type: type,
                                      belongPage: belongPage,
-                                     extra: extra)
+                                     extra: extra,
+                                     onSuccess: onSuccess,
+                                     onError: onError)
     }
     
     /// 更新sessionId
@@ -67,7 +71,8 @@ public class AnalyticTool {
                      timestamp: nil,
                      type: .pageIn,
                      belongPage: code,
-                     extra: extra)
+                     extra: extra,
+                     onSuccess: nil)
         }
     }
     
