@@ -29,7 +29,7 @@ public class AnalyticTool {
                          timestamp: TimeInterval?,
                          type: ApiAnalyticsType,
                          belongPage: String?,
-                         extra: [String: Any]? = nil)
+                         extra: [String: String]? = nil)
     {
         FirebaseAnalytics.addEvent(name: code + "_\(type.firebaseTypeCode)")
         ApiAnalytics.shared.addEvent(code: code,
@@ -60,7 +60,7 @@ public class AnalyticTool {
         if let code = pageData?["code"] as? String,
            let name = pageData?["name"] as? String
         {
-            let extra = pageData?["extra"] as? [String: Any]
+            let extra = pageData?["extra"] as? [String: String]
             
             addEvent(code: code,
                      name: name,
