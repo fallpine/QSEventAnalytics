@@ -64,7 +64,7 @@ Pod::Spec.new do |spec|
 
   # spec.platform     = :ios
   spec.ios.deployment_target = "15.0"
-  spec.watchos.deployment_target = "8.0"
+  spec.watchos.deployment_target = "10.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -136,6 +136,6 @@ Pod::Spec.new do |spec|
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   spec.dependency "QSApiAnalytics"
-  spec.dependency "QSFirebaseAnalytics"
+  spec.ios.dependency "QSFirebaseAnalytics"
   
 end

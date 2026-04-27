@@ -6,7 +6,9 @@
 //
 
 import QSApiAnalytics
+#if os(iOS)
 import QSFirebaseAnalytics
+#endif
 
 public enum AnalyticTool {
     // MARK: - Func
@@ -18,9 +20,11 @@ public enum AnalyticTool {
                                  firebaseEnabled: Bool = true) {
         self.firebaseEnabled = firebaseEnabled
 
+        #if os(iOS)
         if firebaseEnabled {
             FirebaseAnalytics.configure()
         }
+        #endif
 
         ApiAnalytics.shared.initialize(userid: userId,
                                        api: api,
@@ -38,9 +42,11 @@ public enum AnalyticTool {
                              extra: [String: String]? = nil,
                              onSuccess: (() -> Void)? = nil,
                              onError: ((ApiAnalyticsModel) -> Void)? = nil) {
+        #if os(iOS)
         if firebaseEnabled {
             FirebaseAnalytics.addEvent(name: code)
         }
+        #endif
 
         ApiAnalytics.shared.addEvent(code: code,
                                      name: name,

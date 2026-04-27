@@ -95,7 +95,7 @@ let pageCode = AnalyticTool.currentPageCode
 本库依赖：
 
 - `QSApiAnalytics`
-- `QSFirebaseAnalytics`
+- `QSFirebaseAnalytics`：仅 iOS 引入，watchOS 不引入
 
 ## License
 
