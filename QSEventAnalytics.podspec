@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "QSEventAnalytics"
-  spec.version      = "1.1.6"
+  spec.version      = "1.1.7"
   spec.summary      = "事件打点分析"
 
   # This description is used to generate tags and improve search results.
@@ -63,7 +63,8 @@ Pod::Spec.new do |spec|
   #
 
   # spec.platform     = :ios
-  spec.platform     = :ios, "15.0"
+  spec.ios.deployment_target = "15.0"
+  spec.watchos.deployment_target = "8.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
